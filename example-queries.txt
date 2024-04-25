@@ -1,0 +1,139 @@
+/*
+Created by: Anton Sorokey
+Created date: 04/24/2024
+Description: This query displays the first, last names, and email addresses of customers.
+*/
+
+SELECT
+	FirstName AS [Customer First Name],
+	LastName AS 'Customer Last Name',
+	Email AS EMAIL
+FROM
+	Customer
+ORDER BY
+	FirstName ASC,
+	LastName DESC
+LIMIT 10
+
+
+/*
+CREATED BY: Anton Sorokey
+CREATED DATE: 04/24/2024
+DESCRIPTION: Query invoices to find transactions that were billed to Brussels.
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total
+FROM
+	Invoice
+WHERE
+	BillingCity in ('Brussels', 'Orlando', 'Paris')
+ORDER BY
+	InvoiceDate
+
+
+/*
+CREATED BY: Anton Sorokey
+CREATED DATE: 04/24/2024
+DESCRIPTION: Query invoices to assign tiers to customers purchases.
+*/
+-- A focus on creatng a new column with custonm definitions.
+-- Start with CASE, add WHEN for specific cases, ELSE for default, END and the name of the column to finish
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total,
+	CASE
+	WHEN total < 2.00 THEN 'Baseline Purchase'
+	WHEN total BETWEEN 2.00 AND 6.99 THEN 'Low Purchase'
+	WHEN total BETWEEN 7.00 AND 15.00 THEN 'Target Purchase'
+	ELSE 'Top Performer'
+	END 'Purchase Type'
+FROM
+	Invoice
+ORDER BY
+	BillingCity
+
+
+/*
+CREATED BY: Anton Sorokey
+CREATED DATE: 04/24/2024
+DESCRIPTION: Query invoices to assign tiers to customers purchases.
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total,
+	CASE
+	WHEN total < 2.00 THEN 'Baseline Purchase'
+	WHEN total BETWEEN 2.00 AND 6.99 THEN 'Low Purchase'
+	WHEN total BETWEEN 7.00 AND 15.00 THEN 'Target Purchase'
+	ELSE 'Top Performer'
+	END PurchaseType
+FROM
+	Invoice
+WHERE
+	PurchaseType = 'Top Performer'
+ORDER BY
+	BillingCity
+
+
+SELECT
+	C.firstName as [First Name],
+	C.LastName AS [Last name],
+	I.InvoiceId,
+	I.CustomerId,
+	I.InvoiceDate,
+	i.total
+FROM
+Invoice as I
+INNER JOIN
+Customer as C
+ON
+I.CustomerId = C.CustomerId
+ORDER BY
+	I.CustomerId
+
+
+-- What employees are responsible for the 10 highest individual sales?
+
+SELECT
+	E.FirstName AS [Employee First Name],
+	E.LastName AS [Employee Last Name],
+	C.FirstName AS [Customer First Name],
+	C.LastName AS [Custoemr Last Name],
+	c.SupportRepId,
+	i.CustomerId,
+	i.total
+FROM
+	Invoice AS I
+	INNER JOIN
+	Customer as C
+	ON
+	I.CustomerId = C.CustomerId
+	INNER JOIN
+	Employee AS E
+	ON
+	C.SupportRepId = E.EmployeeId
+ORDER BY
+	I.total DESC
+LIMIT 10
+
+
+/*
+Description: Create a mailling list for US based customers
+*/
+
+-- The double pipe allows for concatenation
+SELECT
+	FirstName || ' ' || LastName || ', ' || Address || ', ' || City || ', ' || State || ', ' || SUBSTR(PostalCode,1, 5) AS [Mailing Address]
+FROM
+	Customer
+WHERE
+	Country = 'USA'
