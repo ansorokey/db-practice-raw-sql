@@ -169,3 +169,41 @@ SELECT
 	COUNT(*) AS [Transactions Made]
 FROM
 	Invoice
+
+
+/*
+Description: What are the average invoice totals greater than $5.00?
+*/
+
+SELECT
+	BillingCity,
+	sum(total) AS [Spent by city],
+	round(avg(total), 2) AS [City Spending Average]
+FROM
+	Invoice
+group by
+	BillingCity
+HAVING
+	[City Spending Average] > 5.00
+ORDER BY
+	BillingCity
+
+
+/*
+Description: What are the average invoice totals greater than $5.00 for cities that start with 'B'?
+*/
+
+SELECT
+	BillingCity,
+	sum(total) AS [Spent by city],
+	round(avg(total), 2) AS [City Spending Average]
+FROM
+	Invoice
+WHERE
+	BillingCity LIKE 'B%'
+group by
+	BillingCity
+HAVING
+	[City Spending Average] > 5.00
+ORDER BY
+	BillingCity

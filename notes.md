@@ -12,6 +12,8 @@ WHERE
     conditions
 GROUP BY
     field (the non aggregates field)
+HAVING
+
 ORDER BY
     field
 LIMIT val
@@ -123,3 +125,16 @@ DATE()
 JULIANDAY()
 STRFTIME()
 TIME()
+
+To filter on aggregated values, we use HAVING.
+Use the aggregated field the same way we'd use a condition in a where clause, but placed under this HAVING keyword
+WHERE is for non aggregated data filtering, HAVING is for aggregated filtering
+Where first filters data,
+data is aggregated,
+then having filters further
+
+
+## Subquery
+A subquery is a nested query. One wrapped in another by parentheses.
+We can use a single query to find the average of an entire column.
+If we want to compare records in the table to the result of that query, we can just use that query as the value.
