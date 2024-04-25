@@ -11,7 +11,7 @@ FROM
 WHERE
     conditions
 GROUP BY
-    field
+    field (the non aggregates field)
 ORDER BY
     field
 LIMIT val

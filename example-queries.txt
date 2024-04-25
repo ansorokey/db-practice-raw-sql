@@ -132,8 +132,40 @@ Description: Create a mailling list for US based customers
 
 -- The double pipe allows for concatenation
 SELECT
-	FirstName || ' ' || LastName || ', ' || Address || ', ' || City || ', ' || State || ', ' || SUBSTR(PostalCode,1, 5) AS [Mailing Address]
+	UPPER(SUBSTR(FirstName, 1, 1)) || LOWER(SUBSTR(FirstName, 2)) || ' ' || LastName || ', ' || Address || ', ' || City || ', ' || State || ', ' || SUBSTR(PostalCode,1, 5) AS [Mailing Address],
+	UPPER(firstname) AS [All Caps]
 FROM
 	Customer
 WHERE
 	Country = 'USA'
+
+
+/*
+Description: Calculate the age of employees
+*/
+
+SELECT
+	LastName,
+	FirstName,
+	BirthDate,
+	strftime('%Y-%m-%d',birthdate) AS [Birthdate no time],
+	strftime('%Y-%m-%d', 'now') - strftime('%Y-%m-%d',birthdate) AS [Age]
+FROM
+	Employee
+order by
+	Age DESC
+
+
+
+/*
+Description: What are our all time grand total sales?
+*/
+
+SELECT
+	SUM(total) AS [Gross Profit],
+	ROUND(avg(total), 2) AS [Average Sales],
+	MAX(total) AS [Highest Single Sale],
+	MIN(total) as [Smallest single sale],
+	COUNT(*) AS [Transactions Made]
+FROM
+	Invoice
