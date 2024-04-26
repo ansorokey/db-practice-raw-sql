@@ -207,3 +207,60 @@ HAVING
 	[City Spending Average] > 5.00
 ORDER BY
 	BillingCity
+
+
+/*
+Description: Gather data about invoices that are less than the average total.
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity,
+	total
+FROM
+	Invoice
+WHERE
+	total < (
+		SELECT
+			AVG(total)
+		FROM
+			Invoice
+	)
+ORDER BY
+	total DESC
+
+
+/*
+Description: how is each individusal city performing against the global average?
+*/
+
+SELECT
+	BillingCity,
+	ROUND(AVG(total), 2) as [city_average],
+	(
+		select ROUND(AVG(total)) from Invoice
+	) AS [global average]
+FROM
+Invoice
+group by BillingCity
+
+
+/*
+Description: Using a subquery without aggregated data. A subquery is like its own table OR piece of individual data
+*/
+
+SELECT
+	InvoiceDate,
+	BillingAddress,
+	BillingCity
+from
+	Invoice
+where
+	InvoiceDate >
+(SELECT
+InvoiceDate
+FROM
+Invoice
+WHERE
+InvoiceId = 251)

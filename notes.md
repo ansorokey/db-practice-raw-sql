@@ -138,3 +138,7 @@ then having filters further
 A subquery is a nested query. One wrapped in another by parentheses.
 We can use a single query to find the average of an entire column.
 If we want to compare records in the table to the result of that query, we can just use that query as the value.
+
+## DISTINCT
+A primary key is guaranteed to be unique to that record. Other fields can have diplicate values.
+Distinct filters out anything that is not unique
