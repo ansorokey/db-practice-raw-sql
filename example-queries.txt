@@ -316,3 +316,55 @@ DELETE FROM
 Artist
 WHERE
 ArtistId = 276
+
+Coderpad challenge
+-- SQL request(s)​​​​​​‌​‌‌​​​​‌​‌‌​​‌‌​‌​‌​‌​​​ below
+SELECT
+	g.name as Genre,
+	avg(t.Milliseconds) as AverageDuration
+FROM
+Genre as g
+INNER JOIN
+track as t
+on
+g.GenreId = t.GenreId
+group by
+	Genre
+ORDER BY
+	AverageDuration DESC
+limit 5
+
+
+coderpad challenge-- SQL request(s)​​​​​​‌​‌‌​​​​‌​‌‌​​‌‌‌​​​​​‌​‌ below
+SELECT
+    c.customerID,
+    c.FIRSTNAME,
+    c.LASTNAME,
+    sum(i.total) as TOTALPURCHASEAMOUNT
+from
+    Customer as c
+left join
+    invoice as i
+on
+    c.CUSTOMERID = i.CUSTOMERID
+group BY
+    c.CUSTOMERID
+order by
+    TOTALPURCHASEAMOUNT
+
+coderpad challenge-- SQL request(s)​​​​​​‌​‌‌​​​​‌​‌‌​​‌‌‌​​‌​‌‌​​ below
+SELECT
+    e.EMPLOYEEID,
+    e.FIRSTNAME,
+    e.LASTNAME,
+    count(*) as NumberOfCustomers
+from
+customer c
+join
+employee e
+on
+c.SUPPORTREPID = e.employeeid
+group by
+    e.EMPLOYEEID, e.FIRSTNAME, e.LASTNAME
+order by
+    NumberOfCustomers DESC
