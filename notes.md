@@ -11,9 +11,9 @@ FROM
 WHERE
     conditions
 GROUP BY
-    field (the non aggregates field)
+    field (the non aggregated field)
 HAVING
-
+    aggregate conditions
 ORDER BY
     field
 LIMIT val
@@ -140,5 +140,52 @@ We can use a single query to find the average of an entire column.
 If we want to compare records in the table to the result of that query, we can just use that query as the value.
 
 ## DISTINCT
-A primary key is guaranteed to be unique to that record. Other fields can have diplicate values.
-Distinct filters out anything that is not unique
+A primary key is guaranteed to be unique to that record. Other fields can have duplicate values.
+Distinct removes duplicate values from a query. Doesnt ignore records that have multiples, just ignores anything it's already seen and only shows on. Long story short, turns a query into a set.
+
+## Views / Virtual Table
+A view is a query that can be repeadetly used or referenced by other queries. Like a function to save us from re-writing the same query over and over.
+
+Views are created by placing
+CREATE VIEW V_view_name AS
+above the selectof the query we want to save.
+Best practice is to begin a view with a `V_`
+
+Not all RDBMS allow you to modify a view directly.
+In order to modify a view, some RDBMS will DROP (delete) an existing view and then recreate it with your modificiations.
+DROP VIEW V_viewname
+
+## Data Manipulation Language (DML)
+Are the SQL statements used to alter the data stored in tables.
+INSERT - add new data
+UPDATE - modify existing data
+DELETE - remove existing data
+
+## INSERT
+We used select and from to GET data from the db.
+To insert, we use
+INSERT INTO tablename (field, field, field)
+and then we specift what we're adding
+VALUES
+    (value, value, value),
+    (value, value, value)
+
+## UPDATE
+Almost always used with the where clause, so we can choose specific data to update.
+WITHOUT THE WHERE CLAUSE, EVERY RECORD IN A TABLE WILL BE UPDATED
+
+UPDATE
+    table
+SET field = newValue
+where
+    condition
+
+## DELETE
+almost ALWAYS used with the where clause.
+WITHOUT THE WHERE CLAUSE, DELETES EVERY SINGLE RECORD IN THE TABLE
+Since we are deleting an entire record, the field names aren't needed here. We jump straight into the table. (if we wanted to delete a record's field, then we would just update that data to null.)
+
+DELETE FROM
+table
+WHERE
+condition

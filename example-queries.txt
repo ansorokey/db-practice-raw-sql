@@ -264,3 +264,55 @@ FROM
 Invoice
 WHERE
 InvoiceId = 251)
+
+
+/*
+Description: Using views
+*/
+
+create view V_average_total AS
+SELECT
+round(avg(total), 2) AS [average total]
+FROM
+invoice
+
+
+/*
+Description: Using views AND Joins
+*/
+
+create view V_Tracks_IJ_InvoiceLine AS
+SELECT
+	*
+FROM
+	InvoiceLine as il
+	inner JOIN
+	track as t
+on il.TrackId = t.TrackId
+
+/*
+Description: deleting a view
+*/
+
+DROP VIEW
+	V_Tracks_IJ_InvoiceLine
+
+
+/*
+Description: Adding new data
+*/
+
+INSERT INTO
+	Artist (name)
+VALUES
+	('Three Day''s Grace')
+
+
+/*
+Description: Deleting existing data
+*/
+
+DELETE FROM
+Artist
+WHERE
+ArtistId = 276
