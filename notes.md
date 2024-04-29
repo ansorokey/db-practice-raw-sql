@@ -115,3 +115,20 @@ Data types can get very specific in their size, but the general types are BINARY
 The specific type of data determines its optimization and size. Check your RDBMS to see what types it supports.
 
 NULL is the special value that represents NOTHING in a field. No value. This is different than no, 0, or false.
+
+SQL can also perform calculations.
+The most basic math sql can perform is feeding an expression into a simple select statement.
+SELECT 4 + 2;
+Unexprected results can arise from mismatched data types (1/3) integer division will return 0 instead of a float.
+Sometimes its best to let your programming language handle math for better precision. 
+
+functions in SQL like MIN(), MAX(), AVG(), SUM() can calulate data from tables.
+
+A subquery, or a sub-select, is a query based on another query.
+A subquery is good for using a query result (like aggregate data) as the argument for a condition.
+
+select first_name, last_name
+from people
+where quiz_points = (SELECT max(quiz_points) from people)
+
+Since the max score could have been anything, its good to go off of the max in the table. Its best ot to assume the max score was 100. Maybe everyoe got one question wrong. Maybe the score was out of 150. USe the table's data rather than your own.
