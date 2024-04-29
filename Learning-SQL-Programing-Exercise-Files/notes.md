@@ -22,7 +22,7 @@ What is a SQL statement?
 Something we write in SQL to retrieve or modify data from a database is a statement.
 
 What is a clause?
-The pieces and keywords that make up a clause. 
+The pieces and keywords that make up a clause.
 The actions we want the database to take, which tables, what fields, etc. A full statement should end in a semicolon, but not all RDBMS need it.
 
 What is a query?
@@ -41,7 +41,7 @@ What is DDL?
 Data Definition Language are statements for modyfing database SCHEMAS. Changing the structure fields and tables.
 
 When using a select statement, what we feed it i what we will be given back.
-If we ask a database to 
+If we ask a database to
 SELECT 'Hello World';
 We will be given exactly that: a single row with the column 'Hello World' and a record with 'Hello World'.
 If we feed it this query AND specift a table, we will get back a 'Hello World' for every record in the table.
@@ -98,7 +98,7 @@ Not all languages support all joins.
 
 select distinct p.state_code, s.state_abbrev
 from states as s
-left join people as p 
+left join people as p
 on p.state_code = s.state_abbrev
 order by p.state_code;
 
@@ -120,7 +120,7 @@ SQL can also perform calculations.
 The most basic math sql can perform is feeding an expression into a simple select statement.
 SELECT 4 + 2;
 Unexprected results can arise from mismatched data types (1/3) integer division will return 0 instead of a float.
-Sometimes its best to let your programming language handle math for better precision. 
+Sometimes its best to let your programming language handle math for better precision.
 
 functions in SQL like MIN(), MAX(), AVG(), SUM() can calulate data from tables.
 
@@ -165,3 +165,16 @@ Since the entire record is getting deleted, we only need to specify the table we
 DELETE FROM table;
 That statement by itself is entirely valid, and will wipe out the entire table.
 Since that isn't what we want to do, we also want to make very good use of the where clause to pinpoint the specific data we want to delete.
+
+One of the most common issues in SQL is typos. If you get repeated errors, try to look carefully at your syntax and break down each statement into pieces.
+
+Text values should always be enclosed in single quotes.
+
+If you use spaces as characters in your field/table names (which is not recommended), use BACKTICKS to reference those names in a statement.
+
+Always use plain text in your sql queries. Copying and pasting can cause formatting errors, and switch quotation marks.
+Sharing yout statements through plain txt files is better than copying and pasting.
+
+use IS NULL or IS NOT NULL to look for null values. Don't compare a field to 0.
+
+If updating or deleting, make it a select query first, and then modify to UPDATE or DELETE.
