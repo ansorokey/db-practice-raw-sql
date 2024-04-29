@@ -39,3 +39,69 @@ Data Manipulation Languages are statements for modifying database records.
 
 What is DDL?
 Data Definition Language are statements for modyfing database SCHEMAS. Changing the structure fields and tables.
+
+When using a select statement, what we feed it i what we will be given back.
+If we ask a database to 
+SELECT 'Hello World';
+We will be given exactly that: a single row with the column 'Hello World' and a record with 'Hello World'.
+If we feed it this query AND specift a table, we will get back a 'Hello World' for every record in the table.
+
+Using where allows us to filter out results that match a condition. When filtering by text conditions, whether or not it needs to be case sensitive depends on the software and how the column is defined.
+
+When creating coparisons, there are several ways to ask for equal to.
+x = y, x IS y.
+To negate this, we can use
+x != y, x IS NOT y, x <> y.
+
+When using predicates like OR/AND, these will be read in order.
+So a where clause like
+x and y or z
+would check x and y first, then z would be a seperate clause.
+To specify what is meant to be checked first, use parentheses.
+x and (y or z).
+
+the LIKE operator along with a '%' allows loose matches that align with the given pattern. The wildcard can go anywhere.
+
+The limit keywords tell the query how many results to stop at. LIMIT 10 would stop after the first 10 results.
+If we wanted to skip a number of results, like  page of results, we can use the OffSET keyword. If we offset 10, we would begin at the 11th record.
+
+order by can be used to sort records by the selected fields in ascendig order ASC. Or descending if we use DESC. Givenmultiple fields, it will sort by the first to last field. If a field is renamed, we can sort by that field's name.
+
+DISTINCT is a keyword we can put in front of a field to tell sql to ignore repeated values. Only show the first unique values of each.
+
+LENGTH is a function that takes a field and returns the length of that given field. Works on strings and numbers.
+
+COUNT is a function that counts the rows in a given field. Usualy used with the field wildcard (*) to count every record. When using COUNT, be careful what field you chose to count. If you specify a field that has some null values, those will not be counted.
+
+The JOIN keyword is used to out tables together (horizontally) that connect in some way. That's usually done with a foriegn an primary key betwen tables.
+
+FUN FACT: If a joining ON clause is not used with tables, the query will still work. But since the software doesnt know how to match data, EVERY left record will be given EVERY right record, EACH.
+So thats a table for every record.
+
+An inner join combines tables and show only all records that pair with another on each table. table.field_name can be used to distinguish similar field names across different tables, especially if a field is caled 'id'.
+
+In the ON clause, we specify which table.field should match the other table.field.
+
+Technically, we can also jon tables without using the on clause, which is called an implicit join, but this is not recommended both for human readability and unintended consequences.
+
+A cross join is when we dont use an on clause. Tats the left table times the right table.
+
+An inner join is the overlap between tables.
+
+A left (outer) join is the entire left table, with the right table fills in where it has matches. No matches on the right side will be blank/null fields.
+
+A right (outer) join is the same thing the other way around, but is rarely used. Its the same thing as a left join with the tables fliped around.
+
+A full outer join is a combination between tables that allows for unmatched data. Like an inner join, but without removing gaps in data.
+
+Not all languages support all joins.
+
+select distinct p.state_code, s.state_abbrev
+from states as s
+left join people as p 
+on p.state_code = s.state_abbrev
+order by p.state_code;
+
+this query shows that 3 states do not have any people that reference them wen left joined.
+
+GROUP BY groups together records based on the given field. This is used when we aggregate data (use functions) and should be used with the data we DIDNT aggregate.
