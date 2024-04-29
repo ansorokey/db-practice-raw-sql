@@ -132,3 +132,36 @@ from people
 where quiz_points = (SELECT max(quiz_points) from people)
 
 Since the max score could have been anything, its good to go off of the max in the table. Its best ot to assume the max score was 100. Maybe everyoe got one question wrong. Maybe the score was out of 150. USe the table's data rather than your own.
+
+We can transform the retrieved data using some functions like UPPER(), LOWER(), SUBSTR(), REPLACE(), CAST()
+Cast is good for type casting data types.
+CAST(quiz_points AS char)
+
+Using an alias allows us to rename a table or column with the AS keyword.
+The new name can be written as is, or in quotes if using spaces. Try not to use spaces when possible.
+
+To a data to a table, we use the INSERT INTO keywords.
+Similar to a select query, we follow it with the table we want to add a record to, and then we describe what fields we will be providing data to. It also tells sql what order we are giving data.
+INSERT INTO people
+    (name, state_code)
+VALUES
+    ('Anton', 'OH'),
+    ('Ethan', 'NY'),
+    ('Anon', NULL)
+
+If we provide a field with a table, that field needs to be filled. If we dont have a value to provide, we can set it to NULL
+
+Constraints are rules the table follow that determine how data is allowed to be entered. If values need to exist, if they need to be unique, etc.
+
+Data can be modified and edited using the UPDATE clause.
+UPDATE people
+SET state_code = 'MA'
+WHERE name = 'Anon'
+
+Make sure to always use a where clause to find the specific records we are looking to update, and avoid updating unintended records. It never hurts to add more information in a clause. The unique id of a record is always the best thing to query by.
+
+DELETE is the keywords we use to wipe out records.
+Since the entire record is getting deleted, we only need to specify the table we are deleting from. No fields.
+DELETE FROM table;
+That statement by itself is entirely valid, and will wipe out the entire table.
+Since that isn't what we want to do, we also want to make very good use of the where clause to pinpoint the specific data we want to delete.
