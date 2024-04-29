@@ -105,3 +105,13 @@ order by p.state_code;
 this query shows that 3 states do not have any people that reference them wen left joined.
 
 GROUP BY groups together records based on the given field. This is used when we aggregate data (use functions) and should be used with the data we DIDNT aggregate.
+
+Data Types are the specific kinds of data we store in a field.
+Could be text, numeric, binary, etc.
+Different data types are stored differently, and allow for different actions to be performed on them.
+
+Data types can get very specific in their size, but the general types are BINARY, DATE/TIME, NUMERIC, VARCHAR, BOOLEAN.
+
+The specific type of data determines its optimization and size. Check your RDBMS to see what types it supports.
+
+NULL is the special value that represents NOTHING in a field. No value. This is different than no, 0, or false.
