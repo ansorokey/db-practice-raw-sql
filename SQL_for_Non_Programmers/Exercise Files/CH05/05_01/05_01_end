@@ -1,0 +1,25 @@
+--sales employees in Florida
+SELECT DISTINCT emp_name
+FROM oliveoil.sales
+WHERE cust_state = 'Florida';
+
+
+--sum of order totals for each sales employee in Florida
+SELECT emp_name,
+       SUM(order_total) AS sum_of_orders
+FROM oliveoil.sales
+WHERE cust_state = 'Florida'
+GROUP BY emp_name
+ORDER BY sum_of_orders DESC;
+
+
+--CASE Statement: grouping sales employees into teams
+SELECT CASE
+         WHEN emp_name IN ('Clement Carry', 'Cynthia Cash', 'Georgia Eddowes') THEN 'Team 1'
+         WHEN emp_name IN ('Kristen Phillips', 'Mitch White', 'Norm Hawkins') THEN 'Team 2'
+       END AS employee_team,
+       SUM(order_total) AS sum_of_orders
+FROM oliveoil.sales
+WHERE cust_state = 'Florida'
+GROUP BY employee_team
+ORDER BY sum_of_orders DESC;

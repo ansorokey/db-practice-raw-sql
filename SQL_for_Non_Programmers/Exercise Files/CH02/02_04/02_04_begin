@@ -1,0 +1,45 @@
+--selecting specific columns
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales;
+
+
+--ORDER BY: sorting by order total (default = ascending)
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales;
+
+
+
+--ORDER BY: sorting by order total descending
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales;
+
+
+
+--ORDER BY: sorting by column 4 descending
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales;
+
+
+
+--ORDER BY: sorting by product category and order total descending
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales;
+
+
+
+--top 5 overall orders

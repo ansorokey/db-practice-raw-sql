@@ -1,0 +1,13 @@
+--selecting the unique number of employees working for each state
+
+
+
+--including the sum of total order sales by state ordered largest to smallest
+
+
+
+--filtering for states with 6 employees and over 40000 in sales
+
+
+
+--only including business customers

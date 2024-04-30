@@ -1,0 +1,23 @@
+--unique customer types available
+SELECT DISTINCT cust_type
+FROM oliveoil.sales;
+
+
+--orders sorted by largest to smallest order total
+SELECT order_num,
+       order_type,
+       cust_type,
+       order_total
+FROM oliveoil.sales
+ORDER BY order_total DESC;
+
+
+--top 20 orders in North Carolina and Georgia
+SELECT order_num,
+       order_type,
+       cust_type,
+       order_total
+FROM oliveoil.sales
+WHERE cust_state IN ('North Carolina', 'Georgia')
+ORDER BY order_total DESC
+LIMIT 20;

@@ -1,0 +1,37 @@
+--selecting the unique number of employees working for each state
+SELECT cust_state,
+       COUNT(DISTINCT emp_id) AS emp_count
+FROM oliveoil.sales
+GROUP BY cust_state;
+
+
+--including the sum of total order sales by state ordered largest to smallest
+SELECT cust_state,
+       COUNT(DISTINCT emp_id) AS emp_count,
+       SUM(order_total) AS sum_of_orders
+FROM oliveoil.sales
+GROUP BY cust_state
+ORDER BY sum_of_orders DESC;
+
+
+--filtering for states with 6 employees and over 40000 in sales
+SELECT cust_state,
+       COUNT(DISTINCT emp_id) AS emp_count,
+       SUM(order_total) AS sum_of_orders
+FROM oliveoil.sales
+GROUP BY cust_state
+HAVING emp_count = 6
+   AND sum_of_orders > 40000
+ORDER BY sum_of_orders DESC;
+
+
+--only including business customers
+SELECT cust_state,
+       COUNT(DISTINCT emp_id) AS emp_count,
+       SUM(order_total) AS sum_of_orders
+FROM oliveoil.sales
+WHERE cust_type = 'Business'
+GROUP BY cust_state
+HAVING emp_count = 6
+   AND sum_of_orders > 40000
+ORDER BY sum_of_orders DESC;

@@ -1,0 +1,26 @@
+--full list of products available
+SELECT DISTINCT prod_name
+FROM oliveoil.sales
+ORDER BY prod_name;
+
+
+--list of Basil products available
+SELECT DISTINCT prod_name
+FROM oliveoil.sales
+WHERE prod_name LIKE 'Basil%'
+ORDER BY prod_name;
+
+
+--total sales per Basil product
+SELECT prod_name,
+       SUM(order_total) AS sum_of_orders
+FROM oliveoil.sales
+WHERE prod_name LIKE 'Basil%'
+GROUP BY prod_name
+ORDER BY sum_of_orders DESC;
+
+
+--list of single-pack Basil products available
+SELECT DISTINCT prod_name
+FROM oliveoil.sales
+WHERE prod_name LIKE 'Basil Extra Virgin Olive Oil _pk'

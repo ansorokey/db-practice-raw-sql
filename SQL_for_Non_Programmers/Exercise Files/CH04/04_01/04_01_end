@@ -1,0 +1,23 @@
+--selecting all rows and columns from employees table
+SELECT *
+FROM oliveoil.employees;
+
+
+--EQUIJOIN: basic equijoin
+SELECT job_title,
+       emp_id,
+       order_total
+FROM oliveoil.employees,
+     oliveoil.sales
+WHERE oliveoil.employees.id = oliveoil.sales.emp_id;
+
+
+--EQUIJOIN: count of employees and total sales per job title
+SELECT job_title,
+       COUNT(DISTINCT emp_id) AS emp_count,
+       SUM(order_total) AS total_sales
+FROM oliveoil.employees,
+     oliveoil.sales
+WHERE oliveoil.employees.id = oliveoil.sales.emp_id
+GROUP BY job_title
+ORDER BY total_sales DESC;

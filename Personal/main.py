@@ -1,20 +1,36 @@
 # This will be a terminal based interactive program to browse the database through Python.
+def displayMenu(menu):
+    print('Displaying ' + menu + ' menu.')
+    print('Please select an option below: \n')
+
+    print('r: return to last menu')
+    print('q: quit program')
+
+def awaitResponse():
+    response = input()
+
+    if response.lower() == 'q':
+        print('Exiting program')
+        global runProgram
+        runProgram = False
+        return
+    elif response.lower() == 'r':
+        print('Returning to last menu.')
+        global currentMenu, lastMenu
+        currentMenu = lastMenu
+        return
+    else:
+        print('Input not recognized')
+
 
 def main():
-    print('Hello World')
-
+    global runProgram, currentMenu, lastMenu
     runProgram = True
+    currentMenu = 'main'
+    lastMenu = 'last'
     while runProgram == True:
 
-        print('MAIN MENU')
-        print('What would you like to do?')
-        print('Q. Quit')
-
-        response = input();
-        if response == 'q' or response == 'Q':
-            print('Tank you for using the database browser.')
-            runProgram = False
-        else:
-            print('I don\'t know that command')
+        displayMenu(currentMenu)
+        awaitResponse()
 
 main()

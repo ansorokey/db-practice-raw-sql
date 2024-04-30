@@ -1,0 +1,9 @@
+--GROUP BY: grouping data and aggregate functions
+SELECT cust_state,
+       SUM(order_total) AS sum_of_orders,
+       COUNT(*) AS order_count,
+       AVG(order_total) AS avg_order
+FROM oliveoil.sales
+WHERE cust_type = 'Business'
+GROUP BY cust_state
+ORDER BY sum_of_orders DESC;

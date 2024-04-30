@@ -1,0 +1,41 @@
+--EQUIJOIN: count of employees and total sales per job title
+SELECT job_title,
+       COUNT(DISTINCT id) AS emp_count,
+       SUM(order_total) AS total_sales
+FROM oliveoil.employees, oliveoil.sales
+WHERE oliveoil.employees.id = oliveoil.sales.emp_id
+GROUP BY job_title
+ORDER BY total_sales DESC;
+
+
+--INNER JOIN: count of employees and total sales per job title
+SELECT job_title,
+       COUNT(DISTINCT id) AS emp_count,
+       SUM(order_total) AS total_sales
+FROM oliveoil.employees
+INNER JOIN oliveoil.sales
+ON oliveoil.employees.id = oliveoil.sales.emp_id
+GROUP BY job_title
+ORDER BY total_sales DESC;
+
+
+--INNER JOIN: count of employees and total sales per job title with table names
+SELECT oliveoil.employees.job_title,
+       COUNT(DISTINCT oliveoil.employees.id) AS emp_count,
+       SUM(oliveoil.sales.order_total) AS total_sales
+FROM oliveoil.employees
+INNER JOIN oliveoil.sales
+ON oliveoil.employees.id = oliveoil.sales.emp_id
+GROUP BY oliveoil.employees.job_title
+ORDER BY total_sales DESC;
+
+
+----INNER JOIN: count of employees and total sales per job title with table aliases
+SELECT e.job_title,
+       COUNT(DISTINCT e.id) AS emp_count,
+       SUM(s.order_total) AS total_sales
+FROM oliveoil.employees AS e
+INNER JOIN oliveoil.sales AS s
+ON e.id = s.emp_id
+GROUP BY e.job_title
+ORDER BY total_sales DESC;

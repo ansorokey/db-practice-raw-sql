@@ -1,0 +1,13 @@
+--EQUIJOIN: count of employees and total sales per job title
+
+
+
+--INNER JOIN: count of employees and total sales per job title
+
+
+
+--INNER JOIN: count of employees and total sales per job title with table names
+
+
+
+----INNER JOIN: count of employees and total sales per job title with table aliases

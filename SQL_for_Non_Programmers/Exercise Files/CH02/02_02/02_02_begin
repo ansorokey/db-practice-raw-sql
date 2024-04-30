@@ -1,0 +1,17 @@
+--selecting all rows and columns
+
+
+
+--selecting specific columns
+
+
+
+--LIMIT: limiting the output to 10 rows
+
+
+
+--selecting one column
+
+
+
+--DISTINCT: selecting unique values from one column

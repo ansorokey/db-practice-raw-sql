@@ -1,0 +1,18 @@
+--SUM, AVG: total sales and average order value
+SELECT SUM(order_total) AS sum_of_orders,
+       AVG(order_total) AS avg_order
+FROM oliveoil.sales;
+
+
+--SUM, AVG: total sales and average order value for business customers
+SELECT SUM(order_total) AS sum_of_orders,
+       AVG(order_total) AS avg_order
+FROM oliveoil.sales
+WHERE cust_type = 'Business';
+
+
+--MIN, MAX: minimum and maximum orders for business customers
+SELECT MIN(order_total) AS min_order,
+       MAX(order_total) AS max_order
+FROM oliveoil.sales
+WHERE cust_type = 'Business';

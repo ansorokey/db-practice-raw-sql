@@ -1,0 +1,18 @@
+--Calculated Fields, numerical: total net sales
+SELECT sum(order_total*.94) AS net_sales
+FROM oliveoil.sales;
+
+
+--Calculated Fields, numerical: total net sales per state
+SELECT cust_state,
+       sum(order_total*.94) AS net_sales
+FROM oliveoil.sales
+GROUP BY cust_state
+ORDER BY net_sales DESC;
+
+
+--Calculated Fields, text: combining text columns
+SELECT order_type,
+       cust_type,
+       order_type || '-' || cust_type AS order_cust_type
+FROM oliveoil.sales;

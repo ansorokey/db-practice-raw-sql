@@ -1,0 +1,24 @@
+--list of orders made by Business customers or Olive Oil products
+SELECT order_num,
+       cust_type,
+       prod_category,
+       order_total
+FROM oliveoil.sales
+WHERE cust_type = 'Business'
+   OR prod_category = 'Olive Oil';
+
+
+--UNION: list of orders made by Business customers or Olive Oil products
+SELECT order_num,
+       cust_type,
+       prod_category,
+       order_total
+FROM oliveoil.sales
+WHERE cust_type = 'Business'
+UNION ALL
+SELECT order_num,
+       cust_type,
+       prod_category,
+       order_total
+FROM oliveoil.sales
+WHERE prod_category = 'Olive Oil';

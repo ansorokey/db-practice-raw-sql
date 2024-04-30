@@ -1,0 +1,32 @@
+--INNER JOIN: total sales of product category olive oil per region
+SELECT r.region,
+       SUM(s.order_total) AS total_sales
+FROM oliveoil.regions AS r
+INNER JOIN oliveoil.sales AS s
+ON r.state = s.cust_state
+WHERE s.prod_category = 'Olive Oil'
+GROUP BY r.region
+ORDER BY total_sales DESC;
+
+
+--INNER JOIN: total sales of product category olive oil per region for only business customers
+SELECT r.region,
+       SUM(s.order_total) AS total_sales
+FROM oliveoil.regions AS r
+INNER JOIN oliveoil.sales AS s
+ON r.state = s.cust_state
+WHERE s.prod_category = 'Olive Oil'
+  AND s.cust_type = 'Business'
+GROUP BY r.region
+ORDER BY total_sales DESC;
+
+
+--Bonus - EQUIJOIN: total sales of product category olive oil per region for only business customers
+SELECT r.region,
+       SUM(s.order_total) AS total_sales
+FROM oliveoil.regions AS r, oliveoil.sales AS s
+WHERE r.state = s.cust_state
+  AND s.prod_category = 'Olive Oil'
+  AND s.cust_type = 'Business'
+GROUP BY r.region
+ORDER BY total_sales DESC;

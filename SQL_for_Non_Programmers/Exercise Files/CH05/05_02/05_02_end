@@ -1,0 +1,33 @@
+--CASE Statement, ELSE: grouping sales employees into teams
+SELECT CASE
+         WHEN emp_name IN ('Clement Carry', 'Cynthia Cash', 'Georgia Eddowes') THEN 'Team 1'
+         WHEN emp_name IN ('Kristen Phillips', 'Mitch White', 'Norm Hawkins') THEN 'Team 2'
+         ELSE "Other"
+       END AS employee_team,
+       SUM(order_total) AS sum_of_orders
+FROM oliveoil.sales
+GROUP BY employee_team
+ORDER BY sum_of_orders DESC;
+
+
+--CASE Statement: grouping order sizes
+SELECT CASE
+         WHEN quantity <= 6 THEN 'Small Order'
+         WHEN quantity > 6 THEN 'Bulk Order'
+       END AS order_size,
+       SUM(order_total) AS sum_of_orders
+FROM oliveoil.sales
+WHERE cust_state = 'California'
+GROUP BY order_size
+ORDER BY sum_of_orders DESC;
+
+
+--CASE Statement: checking CASE categorization on raw order data
+SELECT CASE
+         WHEN quantity <= 6 THEN 'Small Order'
+         WHEN quantity > 6 THEN 'Bulk Order'
+       END AS order_size,
+       quantity,
+       order_total
+FROM oliveoil.sales
+WHERE cust_state = 'California';

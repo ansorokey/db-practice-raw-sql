@@ -1,0 +1,30 @@
+--selecting all rows and columns from sales table
+SELECT *
+FROM oliveoil.sales;
+
+
+--selecting specific columns
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales;
+
+
+--LIMIT: limiting the output to 10 rows
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales
+LIMIT 10;
+
+
+--selecting one column
+SELECT prod_category
+FROM oliveoil.sales;
+
+
+--DISTINCT: selecting unique values from one column
+SELECT DISTINCT prod_category
+FROM oliveoil.sales;

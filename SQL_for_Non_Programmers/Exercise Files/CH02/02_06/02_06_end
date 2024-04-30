@@ -1,0 +1,60 @@
+--WHERE: filtering data with the AND operator, part 1
+SELECT order_num,
+       emp_name,
+       prod_category,
+       order_total
+FROM oliveoil.sales
+WHERE prod_category = 'Bath Products'
+  AND emp_name = 'Clement Carry'
+ORDER BY order_total DESC;
+
+
+--WHERE: filtering data with the AND operator, part 2
+SELECT order_num,
+       emp_name,
+       prod_category,
+       quantity,
+       order_total
+FROM oliveoil.sales
+WHERE prod_category = 'Bath Products'
+  AND emp_name = 'Clement Carry'
+  AND quantity > 3
+ORDER BY order_total DESC;
+
+
+--WHERE: filtering data with the BETWEEN operator
+SELECT order_num,
+       emp_name,
+       prod_category,
+       quantity,
+       order_total
+FROM oliveoil.sales
+WHERE prod_category = 'Bath Products'
+  AND emp_name = 'Clement Carry'
+  AND quantity BETWEEN 2 and 4
+ORDER BY order_total DESC;
+
+
+--WHERE: filtering data with the OR operator, part 1
+SELECT order_num,
+       emp_name,
+       prod_category,
+       quantity,
+       order_total
+FROM oliveoil.sales
+WHERE prod_category = 'Bath Products'
+   OR emp_name = 'Clement Carry'
+ORDER BY order_total DESC;
+
+
+--WHERE: filtering data with the OR operator, part 2
+SELECT order_num,
+       emp_name,
+       prod_category,
+       quantity,
+       order_total
+FROM oliveoil.sales
+WHERE (prod_category = 'Bath Products'
+    OR emp_name = 'Clement Carry')
+   AND quantity > 5
+ORDER BY order_total DESC;

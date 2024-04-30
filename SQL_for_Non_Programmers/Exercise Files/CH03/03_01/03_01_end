@@ -1,0 +1,19 @@
+--COUNT: counting orders
+SELECT COUNT(*)
+FROM oliveoil.sales;
+
+
+--COUNT: counting gift basket orders
+SELECT COUNT(*)
+FROM oliveoil.sales
+WHERE prod_category = 'Gift Basket';
+
+
+--COUNT, AS: counting customers and using an alias
+SELECT COUNT(DISTINCT cust_id) AS customer_count
+FROM oliveoil.sales;
+
+
+--AS: using an alias
+SELECT cust_id AS client_id
+FROM oliveoil.sales;
