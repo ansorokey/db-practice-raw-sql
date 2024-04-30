@@ -7,27 +7,32 @@ def displayMenu(menu):
     print('q: quit program')
 
 def awaitResponse():
-    response = input()
+    global runProgram, currentMenu, lastMenu
+    response = str(input())
 
-    if response.lower() == 'q':
+    if response == '1':
+        lastMenu = currentMenu
+        currentMenu = response
+    elif response.lower() == 'q':
         print('Exiting program')
-        global runProgram
         runProgram = False
-        return
     elif response.lower() == 'r':
         print('Returning to last menu.')
-        global currentMenu, lastMenu
         currentMenu = lastMenu
-        return
     else:
         print('Input not recognized')
+    
+    return
 
 
 def main():
     global runProgram, currentMenu, lastMenu
+    # I should make the last menu a stack, and pop to go back
+
     runProgram = True
     currentMenu = 'main'
     lastMenu = 'last'
+
     while runProgram == True:
 
         displayMenu(currentMenu)
