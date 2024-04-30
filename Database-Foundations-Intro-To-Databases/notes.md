@@ -152,3 +152,38 @@ It may be SA (sql server) or POSTGRES.
 With both of these, we can create a new connection in azure studio.
 When we click new connection, the [server] field is for the IP address. localhost for our local servers.
 In the advanced section, we can declare the specific outer port.
+
+## Create a database
+A sql server doesnt do anything on its own. It needs input to do stuff. We use SQL to tell a datasbe server what to do.
+To reach a SQL execution window, right click the server instance and select new query.
+
+`select * from sys.databases` (ss)
+`select * from pg_database` (ps)
+- browse the databases in the server
+
+`create database db_name`
+
+## CHALLENGE: Create a Database
+
+## Structured Query Language
+DDL - Data Definition Language is the language used to DESIGN and BUILD components of the database.
+`CREATE`, `ALTER`, `DROP`
+
+DML - Data Manipulation Language - is the language used to work with data storage
+`INSERT`, `UPDATE`, `DELETE`
+
+## Database Organization
+Tables are the most basic structure needed to provide organization in a DB.
+Seperate tables for different focuses helps to optimize storage and reduce redundancy.
+A SCHEMA is a blueprint of how tables relate to one another within a database.
+Schemas can also group related tables together. When we name the schema, the tables will be named off od that schema.
+TABLES: Books, Authors, Publishers
+SCHEMA: Books
+So the tables in the databse would be named:
+Books.Books, Books.Authors, Books.Publishers.
+This is called a TWO PART NAMING CONVENTION
+
+`CREATE SCHEMA schema_name;`
+`DROP SCHEMA schema_name'`
+`use db_name` (ss) connect to database
+`\c db_name` (pg) connect to database
