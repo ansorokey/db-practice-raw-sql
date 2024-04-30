@@ -1,5 +1,5 @@
 --selecting all rows and columns
-
+SELECT *
 
 
 --selecting specific columns
