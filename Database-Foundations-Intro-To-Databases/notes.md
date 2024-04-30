@@ -119,3 +119,23 @@ A server can have multiple databses
 - exit psql cli
 
 ## CHALLENGE: Run a new container.
+First, make sure Docker desktop is running.
+We'll make a postgresql container.
+`docker run` to run a new container
+`--name container-name` to give it a unique name
+`-e 'ACCEPT EULA=Y'` to accept the end user license agreement
+`-e SA_PASSWORD=example-password` to set the system administrator password
+`-p 1420:1433` to set outer and inner ports
+`-d` to run detahced (open in background)
+`mcr.microsoft.com/mssql/server:2019-latest ` The image to load (this is a path)
+A container needs a unique name, and a unique outer port to listen to.
+
+to stop a running container, run
+`docker stop CONTAINER-NAME`
+
+to restart a container, run
+`docker start CONTAINER-NAME`
+(these commands could also use the unique identifier ids)
+
+to remove/delete a container, first STOP the container, and then run
+`docker rm CONTAINER-NAME`
