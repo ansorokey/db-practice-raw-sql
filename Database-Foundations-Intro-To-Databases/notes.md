@@ -139,3 +139,16 @@ to restart a container, run
 
 to remove/delete a container, first STOP the container, and then run
 `docker rm CONTAINER-NAME`
+
+## Connect to a database
+In order to conect to a container instance, we need the server ip address and ports.
+WHen we rin `docker ps`, we can see the IP address by the ports.
+It should be 0.0.0.0. This is the localhost ip address, so localhost:PORT is what we'll use.
+We could also have used `docker port NAME`
+
+Next, we'll need the user account that has administrator access over the server.
+It may be SA (sql server) or POSTGRES.
+
+With both of these, we can create a new connection in azure studio.
+When we click new connection, the [server] field is for the IP address. localhost for our local servers.
+In the advanced section, we can declare the specific outer port.
