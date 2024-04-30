@@ -1,0 +1,39 @@
+-- Select everything from the table
+SELECT *
+FROM products.products;
+
+-- Filter rows to category 2
+SELECT *
+FROM products.products
+WHERE CategoryID = 2;
+
+-- View all products above $25
+SELECT *
+FROM products.products
+WHERE Price > 25;
+
+-- View opposite set of results with NOT
+SELECT *
+FROM products.products
+WHERE NOT Price > 25;
+
+-- Combine criteria with AND
+SELECT *
+FROM products.products
+WHERE Price > 10 AND Size < 12;
+
+-- Use OR to filter two criteria on the same columns
+SELECT *
+FROM products.products
+WHERE CategoryID = 2 OR CategoryID = 3;
+
+-- Use single quotes for text matches
+SELECT *
+FROM products.products
+WHERE ProductName = 'Pure';
+
+-- Empty result sets occur when no matching rows exist
+SELECT *
+FROM products.products
+WHERE Price > 100;
+

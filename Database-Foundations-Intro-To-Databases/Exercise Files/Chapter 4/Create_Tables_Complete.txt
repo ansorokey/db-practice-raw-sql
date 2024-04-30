@@ -1,0 +1,3 @@
+-- Create a table for the Two Trees product data
+
+CREATE TABLE products.products (    SKU CHAR(7) NOT NULL PRIMARY KEY,    ProductName CHAR(50) NOT NULL,    CategoryID INT,    Size INT,    Price DECIMAL(5,2) NOT NULL);

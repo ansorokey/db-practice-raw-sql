@@ -1,0 +1,5 @@
+-- Create a table for the Two Trees categories data
+
+CREATE TABLE products.categories (    CategoryID INT PRIMARY KEY,    CategoryDescription CHAR(50));
+
+-- Add an additional column to the tableALTER TABLE products.categoriesADD ProductLine CHAR(25);

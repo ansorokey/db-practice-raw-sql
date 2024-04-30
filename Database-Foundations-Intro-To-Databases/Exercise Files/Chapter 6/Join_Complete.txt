@@ -1,0 +1,4 @@
+-- View related data in two tables
+SELECT * FROM products.productsWHERE SKU = 'ALB008';SELECT * FROM products.categoriesWHERE CategoryID = 1;
+
+-- Join columns together in a single querySELECT products.ProductName,    products.CategoryID,    products.SKU,    products.Price,    categories.ProductLineFROM products.products    JOIN products.categories        ON products.CategoryID = categories.CategoryIDWHERE SKU = 'ALB008';

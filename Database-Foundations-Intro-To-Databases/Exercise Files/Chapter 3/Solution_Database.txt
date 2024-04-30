@@ -1,0 +1,22 @@
+# Create the server container
+Windows PC:
+docker run --name kineteco -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Adam123456" -p 1411:1433 -d mcr.microsoft.com/mssql/server:2019-latest
+
+MacOS & Linux:
+docker run --name kineteco -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=Adam123456' -p 1411:1433 -d mcr.microsoft.com/mssql/server:2019-latest
+
+# Note that MSSQL_SA_PASSWORD and SA_PASSWORD are functionally identical. Microsoft has depreciated SA_PASSWORD but it continues to work. MSSQL_SA_PASSWORD should be used moving forward.
+
+# Connect in Azure Data Studio with the following settings
+Connection type: Microsoft SQL Server
+Server name: localhost
+User name: SA
+Password: Adam123456
+Remember password: checked
+Server group: SQL Server
+Name: KinetEco
+Advanced - Port: 1411
+
+
+# Create the database in a new query window
+CREATE DATABASE KinetEco;

@@ -1,0 +1,19 @@
+Create a new container on a Windows PC:
+docker run --name MySecondSQLServer -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Adam123456" -p 1420:1433 -d mcr.microsoft.com/mssql/server:2019-latest
+
+# Note that MSSQL_SA_PASSWORD and SA_PASSWORD are functionally identical. Microsoft has depreciated SA_PASSWORD but it continues to work. MSSQL_SA_PASSWORD should be used moving forward.
+
+# view all running containers
+docker ps
+
+# stop a container
+docker stop MySecondSQLServer
+
+# view all containers
+docker ps -a
+
+# start a container
+docker start MySecondSQLServer
+
+# remove a container
+docker rm MySecondSQLServer

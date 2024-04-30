@@ -1,0 +1,20 @@
+-- Sort results on price
+SELECT *
+FROM products.products
+WHERE Size = 8
+ORDER BY Price;
+
+-- Reverse the sort
+SELECT *
+FROM products.products
+WHERE Size = 8
+ORDER BY Price DESC;
+
+-- Sort alphabetically on text
+SELECT *
+FROM products.products
+WHERE Size = 8
+ORDER BY ProductName;
+
+-- Sort rows based on values in two columns
+SELECT *FROM products.productsWHERE Size = 8ORDER BY Price DESC, ProductName;

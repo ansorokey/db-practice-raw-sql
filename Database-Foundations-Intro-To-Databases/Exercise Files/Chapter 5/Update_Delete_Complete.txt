@@ -1,0 +1,7 @@
+-- Change the values in a specific row
+UPDATE products.productsSET CategoryID = 3,    Size = 4WHERE SKU = 'OGEC004';
+
+-- Remove a specific row from the databaseDELETE FROM products.productsWHERE SKU = 'OGEC004';
+
+-- Verify changes to the data
+SELECT * FROM products.products;

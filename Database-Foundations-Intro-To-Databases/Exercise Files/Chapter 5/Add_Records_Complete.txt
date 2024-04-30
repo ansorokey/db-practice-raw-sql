@@ -1,0 +1,20 @@
+-- Add data to a table by filling in all columns in order
+INSERT INTO products.products VALUES
+    ('FCP008', 'First Cold Press', 1, 8, 8.99)
+;
+
+-- Add multiple rows in one command
+INSERT INTO products.products VALUES
+    ('BI008', 'Basil-Infused EVO', 2, 8, 10.99),
+    ('GI016', 'Garlic-Infused EVO', 2, 16, 15.99)
+;
+
+-- Add rows by specifying columns
+INSERT INTO products.products
+    (SKU, ProductName, Price)
+VALUES
+    ('OGEC004', 'Olive Glow Eye Cream', 18.99)
+;
+
+-- Review the data that's been entered
+SELECT * FROM products.products;

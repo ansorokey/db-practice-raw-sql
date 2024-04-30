@@ -1,0 +1,7 @@
+-- Retrieving only a specific number of rows
+-- SQL Server uses the TOP keyword
+SELECT TOP 5 *FROM products.productsORDER BY Price DESC;
+
+
+-- PostgreSQL uses the LIMIT clause
+SELECT *FROM products.productsORDER BY Price DESCLIMIT 5;

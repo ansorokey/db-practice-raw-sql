@@ -1,0 +1,1 @@
+UPDATE products.productsSET CategoryID = 3,    Size = 4WHERE SKU = 'OGEC004';DELETE FROM products.productsWHERE SKU = 'OGEC004';

@@ -1,0 +1,1 @@
+-- Create a schema and table for the KinetEco databaseCREATE SCHEMA HumanResources;CREATE TABLE HumanResources.Employees (    EmployeeID INT NOT NULL PRIMARY KEY,    FirstName CHAR(50) NOT NULL,    LastName CHAR(50) NOT NULL,    Department CHAR(20) NOT NULL,    HireDate DATE NOT NULL);

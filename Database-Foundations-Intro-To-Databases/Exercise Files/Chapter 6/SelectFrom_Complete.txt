@@ -1,0 +1,11 @@
+-- Retrieve selected columns
+SELECT ProductName, Size, Price
+FROM products.products;
+
+-- Columns can be returned in any order
+SELECT Size, Price, ProductName
+FROM products.products;
+
+-- Retrieve all columns from a table
+SELECT *
+FROM products.products;

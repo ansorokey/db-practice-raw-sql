@@ -1,0 +1,11 @@
+-- Add three new employees
+INSERT INTO HumanResources.Employees    (EmployeeID, FirstName, LastName, Department, HireDate)VALUES    (101, 'Robert', 'Boyle', 'Chemistry', '20200325'),    (102, 'Marie', 'Curie', 'Chemistry', '20200825'),    (103, 'Niels', 'Bohr', 'Physics', '20200923');
+
+-- Modify an employee's department
+UPDATE HumanResources.Employees
+SET Department = 'Physics'
+WHERE EmployeeID = 102;
+
+-- Remove an employee's record
+DELETE FROM HumanResources.Employees
+WHERE EmployeeID = 101;
