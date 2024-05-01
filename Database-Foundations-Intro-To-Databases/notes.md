@@ -305,4 +305,23 @@ Remember to be as specific as possible with both of these to avoid deleting unin
 # Saving as using scripts
 If we want to save a number of queries and statements, we can save what we write into an `.sql` file. Now these commands can be re-run repeatedly.
 
-MIf we open the file, make sure we are on the right server and database.
+If we open the file, make sure we are on the right server and database.
+
+## CHALLENGE: Add data to a table
+Dates can be entered in a number of ways. Usually, they can be treated like text information, surrounded in quotes, and enteres as one continuous string as 'YYYMMDD'
+
+INSERT INTO humanresources.employees
+VALUES
+(4, 'Denji', 'Sawman', 'Public Safety', '04-01-2020'),
+(2, 'Power', 'Bacon', 'Public Safety', '04-01-2019'),
+(3, 'Aki', 'Hayakawa', 'Public Safety', '12-12-2018');
+
+UPDATE humanresources.employees
+SET department = 'Fiend'
+WHERE employee_id = 3;
+
+DELETE FROM humanresources.employees
+where employee_id = 2;
+
+select *
+from humanresources.employees;
