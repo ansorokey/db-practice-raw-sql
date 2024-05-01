@@ -119,3 +119,161 @@ A server can have multiple databses
 - exit psql cli
 
 ## CHALLENGE: Run a new container.
+First, make sure Docker desktop is running.
+We'll make a postgresql container.
+`docker run` to run a new container
+`--name container-name` to give it a unique name
+`-e 'ACCEPT EULA=Y'` to accept the end user license agreement
+`-e SA_PASSWORD=example-password` to set the system administrator password
+`-p 1420:1433` to set outer and inner ports
+`-d` to run detahced (open in background)
+`mcr.microsoft.com/mssql/server:2019-latest ` The image to load (this is a path)
+A container needs a unique name, and a unique outer port to listen to.
+
+to stop a running container, run
+`docker stop CONTAINER-NAME`
+
+to restart a container, run
+`docker start CONTAINER-NAME`
+(these commands could also use the unique identifier ids)
+
+to remove/delete a container, first STOP the container, and then run
+`docker rm CONTAINER-NAME`
+
+## Connect to a database
+In order to conect to a container instance, we need the server ip address and ports.
+WHen we rin `docker ps`, we can see the IP address by the ports.
+It should be 0.0.0.0. This is the localhost ip address, so localhost:PORT is what we'll use.
+We could also have used `docker port NAME`
+
+Next, we'll need the user account that has administrator access over the server.
+It may be SA (sql server) or POSTGRES.
+
+With both of these, we can create a new connection in azure studio.
+When we click new connection, the [server] field is for the IP address. localhost for our local servers.
+In the advanced section, we can declare the specific outer port.
+
+## Create a database
+A sql server doesnt do anything on its own. It needs input to do stuff. We use SQL to tell a datasbe server what to do.
+To reach a SQL execution window, right click the server instance and select new query.
+
+`select * from sys.databases` (ss)
+`select * from pg_database` (ps)
+- browse the databases in the server
+
+`create database db_name`
+
+## CHALLENGE: Create a Database
+
+## Structured Query Language
+DDL - Data Definition Language is the language used to DESIGN and BUILD components of the database.
+`CREATE`, `ALTER`, `DROP`
+
+DML - Data Manipulation Language - is the language used to work with data storage
+`INSERT`, `UPDATE`, `DELETE`
+
+## Database Organization
+Tables are the most basic structure needed to provide organization in a DB.
+Seperate tables for different focuses helps to optimize storage and reduce redundancy.
+A SCHEMA is a blueprint of how tables relate to one another within a database.
+Schemas can also group related tables together. When we name the schema, the tables will be named off od that schema.
+TABLES: Books, Authors, Publishers
+SCHEMA: Books
+So the tables in the databse would be named:
+Books.Books, Books.Authors, Books.Publishers.
+This is called a TWO PART NAMING CONVENTION
+
+`CREATE SCHEMA schema_name;`
+`DROP SCHEMA schema_name'`
+`use db_name` (ss) connect to database
+`\c db_name` (pg) connect to database
+
+## Constructing Tables
+A table is made of rows and columns
+The columns are the fields of information about a piece of data.
+Fields names should not have spaces. Use descriptive names and avoid acronyms.
+CamelCase or snake_case based on which RDBMS you're using.
+Identify what sort of data you're storing in this field.
+Different RDBMS support different specific field data types.
+Common types that should work across rdbms are
+- `CHAR(50)` store a series of characters (a string) up to the specified length
+- `INT` whole numbers
+- `DATE` date values, no time
+
+## Create tables
+CREATE TABLE products.products (
+    sku CHAR(7) NOT NULL PRIMARY KEY,
+    product_name CHAR(50) NOT NULL,
+    category_id INT,
+    size_oz INT,
+    price DECIMAL(5,2) NOT NULL
+);
+
+Anything without a NOT NULL is an optional value that doesn't need to be provided.
+
+Every record in any table needs a uniqe identifier.
+This identifier is called the Primary Key. No two records in a table can share the same primary key.
+
+## Alter tables
+Altering a table allows for the modification of tables that have already been made.
+We can add new columns or additional rules (constraints)
+<!-- We originally added a field in our products that referenced -->
+
+CREATE TABLE products.categories (
+    category_id int PRIMARY KEY,
+    category_description char(50)
+);
+
+INSERT INTO products.categories (category_id, category_description)
+VALUES
+(1, 'Olive Oils'),
+(2, 'Flavor Infused Oils'),
+(3, 'Bath and Beauty Oils');
+
+ALTER TABLE products.categories
+ADD product_line char(25);
+
+UPDATE products.categories
+set product_line = 'Gourmet Chef'
+where category_id in (1, 2);
+
+UPDATE products.categories
+set product_line = 'Cosmetics'
+where category_id = 3;
+
+## Reserved Keywords
+Some commands and keyword have a special meaning that give the server instructions.
+Avoid using them in fields and tables.
+Words like CREATE, DROP, etc
+
+If we absolutely had to use keywords, they should be wrapped in their own set of quotes.
+So schema.table would have to be "schema"."table"
+If the keyword is a valid descriptor, extend the name a little.
+Instead of Date as a field, use something like purchase_date
+Each RDBMS should have their own lists of reserved words and keywords.
+
+## CHALLENGE: Create a table
+create schema HumanResources;
+
+create table HumanResources.Employees (
+    employe_id INT NOT NULL PRIMARY KEY,
+    first_name CHAR(50),
+    last_name CHAR(50),
+    department CHAR(50),
+    hire_date DATE
+);
+
+ALTER TABLE HUMANRESOURCES.EMPLOYEES
+RENAME COLUMN employe_id to employee_id;
+
+ALTER TABLE HUMANRESOURCES.EMPLOYEES
+ALTER COLUMN first_name set NOT NULL;
+
+ALTER TABLE HUMANRESOURCES.EMPLOYEES
+ALTER COLUMN last_name set NOT NULL;
+
+ALTER TABLE HUMANRESOURCES.EMPLOYEES
+ALTER COLUMN department set NOT NULL;
+
+ALTER TABLE HUMANRESOURCES.EMPLOYEES
+ALTER COLUMN hire_date set NOT NULL;
