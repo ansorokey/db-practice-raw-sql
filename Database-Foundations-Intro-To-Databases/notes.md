@@ -252,7 +252,7 @@ If the keyword is a valid descriptor, extend the name a little.
 Instead of Date as a field, use something like purchase_date
 Each RDBMS should have their own lists of reserved words and keywords.
 
-## CHALLENGE: Create a table
+## CHALLENGE: Create a table (pg)
 create schema HumanResources;
 
 create table HumanResources.Employees (
@@ -277,3 +277,32 @@ ALTER COLUMN department set NOT NULL;
 
 ALTER TABLE HUMANRESOURCES.EMPLOYEES
 ALTER COLUMN hire_date set NOT NULL;
+
+## Adding records
+records can be added to a table using the INSERT INTO command.
+If we are filling in every field in the same order as the table schema, we dont have to specify fields. BUt make sure they're in the right order.
+INSERT INTO products.products
+VALUES
+('FCP008', 'First Cold Press', 1, 8, 8.99);
+(ss)
+
+If we only want to fill some fields, specify them after the table in parentheses.
+
+## UPDATE and DELETE records
+update already existing records
+
+UPDATE schema.table
+SET
+    field = newValue,
+    field = newValue
+WHERE conditions;
+
+DELETE FROM schema.table
+WHERE conditions;
+
+Remember to be as specific as possible with both of these to avoid deleting unintended records.
+
+# Saving as using scripts
+If we want to save a number of queries and statements, we can save what we write into an `.sql` file. Now these commands can be re-run repeatedly.
+
+MIf we open the file, make sure we are on the right server and database.
