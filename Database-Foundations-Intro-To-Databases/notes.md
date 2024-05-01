@@ -187,3 +187,93 @@ This is called a TWO PART NAMING CONVENTION
 `DROP SCHEMA schema_name'`
 `use db_name` (ss) connect to database
 `\c db_name` (pg) connect to database
+
+## Constructing Tables
+A table is made of rows and columns
+The columns are the fields of information about a piece of data.
+Fields names should not have spaces. Use descriptive names and avoid acronyms.
+CamelCase or snake_case based on which RDBMS you're using.
+Identify what sort of data you're storing in this field.
+Different RDBMS support different specific field data types.
+Common types that should work across rdbms are
+- `CHAR(50)` store a series of characters (a string) up to the specified length
+- `INT` whole numbers
+- `DATE` date values, no time
+
+## Create tables
+CREATE TABLE products.products (
+    sku CHAR(7) NOT NULL PRIMARY KEY,
+    product_name CHAR(50) NOT NULL,
+    category_id INT,
+    size_oz INT,
+    price DECIMAL(5,2) NOT NULL
+);
+
+Anything without a NOT NULL is an optional value that doesn't need to be provided.
+
+Every record in any table needs a uniqe identifier.
+This identifier is called the Primary Key. No two records in a table can share the same primary key.
+
+## Alter tables
+Altering a table allows for the modification of tables that have already been made.
+We can add new columns or additional rules (constraints)
+<!-- We originally added a field in our products that referenced -->
+
+CREATE TABLE products.categories (
+    category_id int PRIMARY KEY,
+    category_description char(50)
+);
+
+INSERT INTO products.categories (category_id, category_description)
+VALUES
+(1, 'Olive Oils'),
+(2, 'Flavor Infused Oils'),
+(3, 'Bath and Beauty Oils');
+
+ALTER TABLE products.categories
+ADD product_line char(25);
+
+UPDATE products.categories
+set product_line = 'Gourmet Chef'
+where category_id in (1, 2);
+
+UPDATE products.categories
+set product_line = 'Cosmetics'
+where category_id = 3;
+
+## Reserved Keywords
+Some commands and keyword have a special meaning that give the server instructions.
+Avoid using them in fields and tables.
+Words like CREATE, DROP, etc
+
+If we absolutely had to use keywords, they should be wrapped in their own set of quotes.
+So schema.table would have to be "schema"."table"
+If the keyword is a valid descriptor, extend the name a little.
+Instead of Date as a field, use something like purchase_date
+Each RDBMS should have their own lists of reserved words and keywords.
+
+## CHALLENGE: Create a table
+create schema HumanResources;
+
+create table HumanResources.Employees (
+    employe_id INT NOT NULL PRIMARY KEY,
+    first_name CHAR(50),
+    last_name CHAR(50),
+    department CHAR(50),
+    hire_date DATE
+);
+
+ALTER TABLE HUMANRESOURCES.EMPLOYEES
+RENAME COLUMN employe_id to employee_id;
+
+ALTER TABLE HUMANRESOURCES.EMPLOYEES
+ALTER COLUMN first_name set NOT NULL;
+
+ALTER TABLE HUMANRESOURCES.EMPLOYEES
+ALTER COLUMN last_name set NOT NULL;
+
+ALTER TABLE HUMANRESOURCES.EMPLOYEES
+ALTER COLUMN department set NOT NULL;
+
+ALTER TABLE HUMANRESOURCES.EMPLOYEES
+ALTER COLUMN hire_date set NOT NULL;
