@@ -325,3 +325,11 @@ where employee_id = 2;
 
 select *
 from humanresources.employees;
+
+## Querying Data
+The point of a database is to retreive stored data. Asking your database a question is a query.
+With a select query, we can collect, filter, summarize, and manipulate data retrieved.
+
+The results of a query are a result set or record set.
+
+The data we manipulate for viewing in a select query does not do anything to the database. Its only for visualizing the data.

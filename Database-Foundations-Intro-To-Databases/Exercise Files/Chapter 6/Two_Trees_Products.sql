@@ -3,7 +3,7 @@ DELETE FROM products.products;
 
 -- Add all new product data
 INSERT INTO products.products
-    (SKU, ProductName, CategoryID, Size, Price)
+    (SKU, Product_name, Category_ID, size_oz, Price)
 VALUES
     ('ALB008', 'Delicate', 1, 8, 10.99),
     ('ALB032', 'Delicate', 1, 32, 18.99),
