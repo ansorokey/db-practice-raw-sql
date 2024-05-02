@@ -132,3 +132,27 @@ having employee_count >= 6
 AND
 sum_of_orders > 40000
 order by sum_of_orders DESC;
+
+## JOINS
+Joining tables is the biggest strength of RDBMS/SQL. They allow for smaller tables that reference one another on common, unique ids.
+
+An equijoin joins two tables completely and filters rows that match a where condition.
+
+select 
+	job_title,
+	count(distinct emp_id),
+	sum(order_total) as all_sales
+from employees, sales
+where employees.id = sales.emp_id
+group by job_title
+order by all_sales DESC;
+
+Inner and even outer joins are usually better to use, as they take the matching condition and clearly put it into the ON clause. 
+
+Remember to specify the specific tables if columns share the same name with table.field
+If field names are unique, then its not necessary
+
+Inner joins returns ONLY matching conditions
+LEFT Outer Join returns the left table and matching rows on the right table
+Right outer join return the right table and matching rows n the left table
+A cross join combines both tables completely (1 table per record) 
