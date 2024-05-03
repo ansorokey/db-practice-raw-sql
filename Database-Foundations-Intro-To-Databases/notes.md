@@ -333,3 +333,16 @@ With a select query, we can collect, filter, summarize, and manipulate data retr
 The results of a query are a result set or record set.
 
 The data we manipulate for viewing in a select query does not do anything to the database. Its only for visualizing the data.
+
+## Limiting Rows
+in sqlserver, we can use the to reduce the number of records we get in a query.
+SELECT TOP(x)
+    *
+FROM schema.table
+
+THe top can be an integer on its own, or we can turn it into a percentage with the PERCENT keyword after.
+SELECT TOP(10) PERCENT
+    *
+FROM schema.table
+
+postgres uses limit like many others.
