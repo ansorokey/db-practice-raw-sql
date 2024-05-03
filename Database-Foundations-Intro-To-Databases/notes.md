@@ -346,3 +346,40 @@ SELECT TOP(10) PERCENT
 FROM schema.table
 
 postgres uses limit like many others.
+
+## Built in functions
+SQL has built in functions that summaraize a column.
+We can add as many additional fields as aggregate data from functions as we want.
+
+Functions are unique to the RDBMS used. Check the docs.
+
+## Group By
+the group by clause basicaly breaks a result set down into tables of sub-results broken up by what we give it.
+If we aggregate data useing a function like count, it will count the entire table.
+If we add a group by clause and enter a value shared by others, the group by will break the table apart based on that value/field.
+
+# Having
+When we retrieve data, things happen in a certain order
+SELECT
+FROM
+WHERE
+GROUP BY
+HAVING
+is the basic format of a query.
+But the order it actually runs in is more like
+SELECT
+FROM
+(retreieve all data)
+
+WHERE
+(filter results)
+
+GROUP BY
+(break results apart)
+
+HAVING
+(filter broken apart results)
+
+Ther where clause will not filter the grouped data of final results. HAVING is what we use to filter grouped results further. Where filters before groups.
+
+A having cluase can have a built in function or data aggregate passed in for filtering.
