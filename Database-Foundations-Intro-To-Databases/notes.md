@@ -383,3 +383,20 @@ HAVING
 Ther where clause will not filter the grouped data of final results. HAVING is what we use to filter grouped results further. Where filters before groups.
 
 A having cluase can have a built in function or data aggregate passed in for filtering.
+
+## CHALLENGE: Query a database
+SELECT
+    *,
+    size_oz * 29.57353 AS in_mililiters
+FROM products.products;
+
+select
+    count(sku) as available,
+    size_oz
+from products.products
+group by size_oz;
+
+select TOP(1) *
+from products.products
+where category_id = 3
+order by price DESC;
