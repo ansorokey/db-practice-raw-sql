@@ -1,0 +1,20 @@
+-- remove every record from the tables to start fresh
+DELETE FROM Products;
+DELETE FROM Suppliers;
+
+-- insert records into both tables
+INSERT INTO Suppliers VALUES
+(101, 'H+ Sport','555-0123','123 Main St.','Seattle','WA','98101'),
+(102, 'Two Trees','555-6789','789 Park Place','Los Angeles','CA','90001'),
+(103, 'Petal and Bloom','555-4567','900 Bay Bridge Ln.','San Diego','CA','92103');
+
+INSERT INTO Products VALUES
+('V-neck sweater','1007','Small','Gray','85.95','101','15'),
+('V-neck T-Shirt','1008','Small','Mint','26.95','101','22'),
+('Ultra-soft tank top','1009','Medium','Gray','23.95','101','9'),
+('Cross-back training tank','1010','Medium','Mint','35.95','101','18'),
+('Bamboo thermal ski coat','1011','Medium','Burgundy','128.95','102','15'),
+('Thermal fleece jacket','1012','Large','Burgundy','85.95','102','8'),
+('Polo Shirt','1013','Extra Large','Burgundy','45.95','102','3'),
+('Skater Graphic T-Shirt','1014','Medium','Black','35.95','103','12'),
+('Grunge skater jeans','1015','Medium','Gray','75.95','103','16');

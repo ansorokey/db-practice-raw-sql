@@ -1,0 +1,17 @@
+-- create a table
+CREATE TABLE Invoices (
+    InvoiceID int PRIMARY KEY NOT NULL,
+    InvoiceDate datetime NOT NULL,
+    TotalDue money NOT NULL,
+);
+
+-- add a column
+ALTER TABLE Invoices
+ADD DueDate datetime NOT NULL;
+
+-- add a check constraint
+ALTER TABLE Invoices
+ADD CONSTRAINT duedate_constraint CHECK (DueDate > InvoiceDate);
+
+-- remove the table from the database
+DROP TABLE Invoices;

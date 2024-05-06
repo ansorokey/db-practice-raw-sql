@@ -1,0 +1,19 @@
+Products
+---
+ProductName varchar(100) UNIQUE
+PartNumber int PK
+Size varchar(20) NULL
+Color varchar(20) NULL
+Price money
+Supplier varchar(100)
+QuantityInStock int DEFAULT=0
+
+Suppliers
+---
+SupplierID int PK
+SupplierName varchar(100) INDEX
+PhoneNumber char(10)
+StreetAddress varchar(100)
+City varchar(50)
+State char(2)
+Zip char(9)
