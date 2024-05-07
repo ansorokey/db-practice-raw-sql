@@ -36,3 +36,15 @@ RDBMS can be operated with a gui and cli. SQL is the language we use in the CLI 
 A table is the mainstorage device of data in a database. A table has fields (columns) that can be filled with a single value for that data.
 
 A record is the row in a table. Each record fills in a spot in a table's column in their spot. The order of a record has no bearing on the database.
+
+## Choosing an ER design Tool
+An ER - Entity Relationship - is a diagram that visually represents the values of tables within a database, as well as how they connect and relate to one another.
+Some free online tools to assist in creating these diagrams are:
+[LucidChart](https://lucid.app/documents#/documents?folder_id=home)
+[SQL Database Modeler](https://sqldbm.com/Home/)
+[DBdiagrams.io](https://dbdiagram.io/home)
+[Quick Database Diagrams](https://www.quickdatabasediagrams.com/)
+
+## Design a table
+In a ER diagram, a table is usually represented by a box. At the top of the box is the table name: either alone or with a two part name (schema.table)
+Beneath the name are names of the fields/columns in that table. THese can also optionally be followed by additional information like data type, and constraints
