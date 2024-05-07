@@ -8,3 +8,31 @@ There is no simple way to change this, If - for example - we wanted to re-organi
 
 The reason databases are 2d matrix spreadsheet style is because we can readily see all the info about data at a glance, and the parameters that define it as columns.
 The columns allow us to sort and sift through data without having to restructue anything, since they're just detailed lists; lists we can remove or add data on to when looking though them.
+
+## What is CRUD?
+Why do we use a relational database?
+1. They're efficient. By using seperate tables for single values, we can avoid having to re-write something every time it needs to be in a record.
+2. Since individual data is written once and referenced multiple times, a single fix on one table can fix eveything that references it
+3. Higly scalable. If we want to add more data, we only need to add another row, or an extra field.
+
+An RDBMS is the application used to manage a database. PostgreSQL, MS SQL Server, etc.
+
+All RDBMS have the same core functionality.
+- Creating and modifying structure of the data
+- Defining tables and column names
+- Create key-value columns and create relationships
+- manipulate data records and perform CRUD tasks
+CREATE, READ, UPDATE, and DELETE data.
+
+Most RDBMS also feature special features, such as
+- scheduled backups
+- Backup copies of DB
+- Control and monitor user access and permissions
+- Create visual reports and graphs
+
+RDBMS can be operated with a gui and cli. SQL is the language we use in the CLI to interact with the database.
+
+## Relations, tuples, tables, and records
+A table is the mainstorage device of data in a database. A table has fields (columns) that can be filled with a single value for that data.
+
+A record is the row in a table. Each record fills in a spot in a table's column in their spot. The order of a record has no bearing on the database.
