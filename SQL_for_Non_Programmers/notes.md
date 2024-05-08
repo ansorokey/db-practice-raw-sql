@@ -156,3 +156,130 @@ Inner joins returns ONLY matching conditions
 LEFT Outer Join returns the left table and matching rows on the right table
 Right outer join return the right table and matching rows n the left table
 A cross join combines both tables completely (1 table per record) 
+
+## CHALLENGE: Joining tables
+select 
+	r.region,
+	sum(s.order_total) as total_sales
+from sales s
+join regions r
+on s.cust_state = r.state
+where s.prod_category = 'Olive Oil'
+-- 	AND s.cust_type = 'Business'
+group by r.region
+order by total_sales;
+
+## Categorize data with CASE
+A case statement represents a single column that can have different values in its field depending on the record.
+The keywords to make a case are CASE, WHEN, THEN and END AS. ELSE and is optional.
+Case is good for grouping data into brackets or labeling individual data.
+select 
+	CASE
+		WHEN emp_name in ('Clement Carry', 'Cynthia Cash', 'Georgia Eddowes')
+		THEN 'team1'
+		ELSE 'team2'
+		END AS team_name,
+	sum(order_total) as total_sales
+from sales
+where cust_state = 'Florida'
+group by team_name
+order by total_sales DESC;
+
+Case satements let us create new columns based on existing ones.
+SELECT CASE
+	WHEN quantity <= 6 THEN 'small'
+	WHEN quantity > 6 THEN 'large'
+	END AS order_size,
+	sum(order_total) as total_sales
+FROM sales
+WHERE cust_state = 'California'
+group by order_size
+ORDER BY total_sales DESC;
+
+## Calculated Fields
+We can create computed columns that are calculations of exisiting data.
+
+SELECT
+	cust_state,
+	SUM(order_total * 0.94) as net_sales
+FROM sales
+GROUP BY cust_state
+ORDER BY net_sales DESC;
+
+Concatenation allows us to combine text. The double pipe operator concatenates text.
+SELECT
+	order_type || '-' || cust_type
+FROM sales;
+
+## Wildcards
+When we dont need to match text exactly, we can use the wildcards to stand in for charcters. Good for finding values.
+
+The wildcards characters are:
+% (percent) - any number of characters before and after. Must be usd with the like keyword.
+SELECT
+	prod_name,
+	sum(order_total) as total_sales
+FROM sales
+WHERE prod_name like '%basil%'
+group by prod_name
+order by total_sales DESC;
+
+_ (underscore) - matches any SINGLE character. More specific.
+
+## Union
+Joins allow tables to be joined together horizontally, extending the number of columns in a result.
+A union joins tables on top of each other, sharing the same number of columns and increasing the rows.
+The keyword union is plced between two complete queries.
+To make a union work, columns must be the same type of data in the same order as well. 
+
+SELECT
+	order_num,
+	cust_type,
+	prod_category,
+	order_total
+FROM sales
+WHERE cust_type = 'Business'
+UNION
+SELECT
+	order_num,
+	cust_type,
+	prod_category,
+	order_total
+FROM sales
+WHERE prod_category = 'Olive Oil';
+
+This query could have also been done with a sigle query and a where OR clause.
+
+By default, a union removes duplicate rows so we dont ee the same record twice.
+If we specficically want to see duplicates, we can use the ALL keyword after the UNION, which will show duplicate records that show up in the top and bottom queries. The tables that get unioned can be different, as long as they follow the rules of a union.
+
+## CHALLENGE: Top Selling Product Lines
+- total sales for top selling lines (lemon, rosemary, chili)
+- highest to lowest
+- product line, total sales, average price per item
+
+SELECT 
+	prod_name,
+	order_total,
+	sum(order_total) as total_sales,
+	round(AVG(order_total)) as avg_item_price
+FROM sales
+WHERE prod_name LIKE 'lemon%' 
+	OR prod_name like 'rosemary%'
+	OR prod_name like 'chili'
+GROUP BY prod_name
+ORDER BY total_sales DESC;
+
+- list of orders made in tp selling states (Texas, Cali, FLorida)
+- show ALL gift basket orders
+- order num, state, type, category, order total
+
+SELECT 
+	order_num,
+	cust_state,
+	cust_type,
+	prod_category,
+	order_total
+FROM sales
+WHERE cust_state in ('Texas', 'California', 'Florida') 
+	OR prod_category = 'Gift Basket';
