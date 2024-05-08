@@ -259,15 +259,17 @@ If we specficically want to see duplicates, we can use the ALL keyword after the
 - product line, total sales, average price per item
 
 SELECT 
-	prod_name,
+	CASE
+		WHEN prod_name like 'Lemon%' then 'Lemon'
+		WHEN prod_name like 'Rosemary%' then 'Rosemary'
+		WHEN prod_name like 'Chili%' then 'Chili'
+		END AS prod_line,
 	order_total,
 	sum(order_total) as total_sales,
-	round(AVG(order_total)) as avg_item_price
+	round(SUM(order_total)/SUM(quantity)) as avg_item_price
 FROM sales
-WHERE prod_name LIKE 'lemon%' 
-	OR prod_name like 'rosemary%'
-	OR prod_name like 'chili'
-GROUP BY prod_name
+where prod_line in ('Lemon', 'Rosemary', 'Chili')
+GROUP BY prod_line
 ORDER BY total_sales DESC;
 
 - list of orders made in tp selling states (Texas, Cali, FLorida)
@@ -281,5 +283,5 @@ SELECT
 	prod_category,
 	order_total
 FROM sales
-WHERE cust_state in ('Texas', 'California', 'Florida') 
+WHERE (cust_state in ('Texas', 'California', 'Florida') AND cust_type = 'Business')
 	OR prod_category = 'Gift Basket';
