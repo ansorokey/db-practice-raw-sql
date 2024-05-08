@@ -48,3 +48,39 @@ Some free online tools to assist in creating these diagrams are:
 ## Design a table
 In a ER diagram, a table is usually represented by a box. At the top of the box is the table name: either alone or with a two part name (schema.table)
 Beneath the name are names of the fields/columns in that table. THese can also optionally be followed by additional information like data type, and constraints
+
+## Attribute Data Types
+Since a field should only store the same types of values, they should all be of the same type.
+This is better for storage efficiency and helps predict future psce needs.
+Data is also kept consistent.
+
+Different RDBMS are capable of different data types, but the most common are:
+TEXT
+- char(x) - text always x charavters in length
+- varchar(x) - text up to x characters in length
+- nchar(x) - text of a fixed length og x characters an additional unicode encoding
+NUMERIC
+- tinyint - ints under 255
+- int - under 2 billion
+- decimal
+- float
+.
+Others can include dates, currency, etc. All depends on your RDBMS. Choose based on needs.
+
+TIP: phone numbers seem like numbers, but we dont perform math on a phone number. So those are usually stored as text data. Same as stuff like zips.
+
+## Use Primary Keys to Identify Records
+A relational database only works if a record can uniquely be referenced by the database. Library card number, bank account, email address, social security, isbn, mac address, etc.
+
+Data must have SOME value that is always be exclusively unique to that record.
+It doesn't always have to be a single value. A combination of a records multiple columns can be unique. This is a concatenation key.
+If the data already has something that will be unique to it, that is a natural key, like an email.
+If we make up a unique value soley for database purposes, that is a surrogate key, like id number.
+
+The PK on  atable are suually designated with a PK
+
+## Object Naming Considerations
+Its almost never recommended to use a space ina name. They require much more work to manage and make work. Typically, naming tables and columns and databases use underscores or capitalization.
+Be careful not to use reserved words that can confuse the system. Check your RDBMS for these.
+Singular vs Plural: is the table named Person or People? Either one works, just stay consistant.
+Do not use acronyms. Use a full, descriptive name.
