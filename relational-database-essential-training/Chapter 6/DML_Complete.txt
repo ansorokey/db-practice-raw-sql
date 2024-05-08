@@ -1,0 +1,13 @@
+-- add two records to a data table
+INSERT INTO Suppliers
+VALUES (101, 'H+ Sport','555-0123','123 Main St.','Seattle','WA','98101'),
+(102, 'Two Trees', '555-6789','789 Park Place','Los Angeles','CA','90001');
+
+-- modify a single record
+UPDATE Suppliers
+SET SupplierName = '2 Trees'
+WHERE SupplierID = 102;
+
+-- remove a record
+DELETE FROM Suppliers
+WHERE SupplierID = 102;

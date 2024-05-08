@@ -1,0 +1,8 @@
+
+Create a SQL Server container on Mac:
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=StrongPassword1' -p 1433:1433 --name sqlserver -d mcr.microsoft.com/mssql/server:2017-latest
+
+---
+
+Create a SQL Server container on PC:
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=StrongPassword1" -p 1433:1433 --name sqlserver -d mcr.microsoft.com/mssql/server:2017-latest
