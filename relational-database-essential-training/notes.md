@@ -84,3 +84,8 @@ Its almost never recommended to use a space ina name. They require much more wor
 Be careful not to use reserved words that can confuse the system. Check your RDBMS for these.
 Singular vs Plural: is the table named Person or People? Either one works, just stay consistant.
 Do not use acronyms. Use a full, descriptive name.
+
+## Data Constraints
+Setting specific ruiles on the data table prevents invalid or incorrectly formatted data from being saved into the database.
+Some constraintd include:
+- Unique Values - Prevents duplicate values from appearing in the table. Like a primary key, but does not have to be a primary key.
