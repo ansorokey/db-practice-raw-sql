@@ -89,3 +89,15 @@ Do not use acronyms. Use a full, descriptive name.
 Setting specific ruiles on the data table prevents invalid or incorrectly formatted data from being saved into the database.
 Some constraintd include:
 - Unique Values - Prevents duplicate values from appearing in the table. Like a primary key, but does not have to be a primary key.
+
+## Required Attributes and null values
+A null value is an absent value. It is the value for any field that was not given a value, or is not known. NULL does not mean zero, an empty string, or a blank space.
+
+A null value is perfectly acceptable for optional data. If it is not needed, it does not need to be entered. If something is required, it cannot be null, and we can enforce this with the NOT NULL constraint. When making a ER diagram, we can use NULL after data types and constraints to show it as optional with a question mark (?).
+
+## Define a default value
+Default values can speed up data entry by automatically filling in a field when we dont specify something.
+After the data type in the schema, we can say DEFAULT=value.
+Default and NOT NULL can work together to ensure that a field is always given a value, and choose the value to be set.
+
+## Establish table indexes
