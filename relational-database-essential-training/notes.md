@@ -101,3 +101,26 @@ After the data type in the schema, we can say DEFAULT=value.
 Default and NOT NULL can work together to ensure that a field is always given a value, and choose the value to be set.
 
 ## Establish table indexes
+An index is how a database keeps tracks of what data has already been added to a table, and how data is retrieved.
+The most commonly searched fields are usually given an index to make lookup even faster.
+
+Think of a phonebook. People indexed by last name, can immediately jump to the section that begin with the same first letter of last name.
+Inversely, one would have no idea how to find a matching person given only their phone number. Only way to fid it would be from front to back top to bottom.
+It would be eaier to find if the telephone umbers were also indexed.
+
+Any column can be given an index, but should really be given to the columns that get searched or joined often.
+A primary key is a clustered index. This just means the PK is also the index, meaning the primary key also determines the order of data.
+Any additional indexes are non-clustered indexes, meaning they have no bearing on data order.
+
+An index takes time and slows down the database. When we add a new record or edit data, all indexes on that table need to be rebuilt. Placing an index on every single column would be a massive slowdown.
+
+Non-indexed columns do not prevent lookup. It's just less efficient, and lookup could possibly be unaffected anyway.
+
+## Check Constraint
+Data is validated before being saved to the table.
+- Can check the range of numerical data
+- can limit text to a list of predefined, acceptable strings
+Check constraints give control over the values entered into a field.
+(ms sql server example)
+[State] char(2) NOT NULL
+CONSTRAINT CHK_State CHECK (State='CA' OR State='TX'),
