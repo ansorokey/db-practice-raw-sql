@@ -124,3 +124,56 @@ Check constraints give control over the values entered into a field.
 (ms sql server example)
 [State] char(2) NOT NULL
 CONSTRAINT CHK_State CHECK (State='CA' OR State='TX'),
+
+## Relate Tables with Foreign Keys
+Relations allow information in one table to be used to look up information in another table.
+A one to many or many to one relationship means that one record in a table can have many records that reference ONE record.
+The many belongs to the table that references that record many times. The one is the record that is referenced.
+The oen is typically a primary key (PK). The data that references another record is usually the foreign key (FK)
+A relationship between tables generally starts on the foreign key.
+A foreign key and primary key need to be the same data types.
+The names don't need to match, but the values do.
+
+## RElationship optionality and cardinality
+Optionality is the minumum number of records that can be associated, usually 0 or 1.
+If a customer MUST have an order, the optionality is 1.
+If a customer might have an order, the optionality is 0.
+
+Cardinality is the maximum number of associated records.
+If a product can only have 1 supplier, cardinality is 1.
+If a product can have many suppliers, cardinality is N.
+
+In a diagram, the range of O to C is represented as O..C
+Where the O is optionality (0, 1) and the C is cardinality (1, N)
+1..N
+This can go on both sides of the relationship.
+Any colum with a unique contraint has a cardinality of ..1.
+If it's not unique, it can be ..N
+
+The range of optionality + cardinality is the multiplicity.
+
+## One to many/many to one relationships
+One library card checks out many books
+One bank account has many transactions
+
+This does not mean one record MUST have muiltiple related records, only that the table can support multiple.
+
+Cardinality controls how two tables can join.
+
+## One to one relationships
+Less common, but still used. 1..1.
+Usually used to shorten a single table into two smaller, one with more common data. Also good for adding security settings to portions of data so only specific roles can access sensitive information.
+
+## Many to many relationships
+Created between two non unique columns. 0..N
+A student can be enrolled in many classes
+A class can have many students.
+
+This relationship is bridged between a third table that points to both table, with optional additional information.
+
+## Self Joins
+A column in a table can relate to itself in the same table.
+AKA self-referencing or recursive relationship.
+Follows the same rules as any other relationship.
+In a diagram, the one table would have both a PK and a FK
+Its a good idea to add check contraints to ensure that the PK and FK are never equal on one record.
