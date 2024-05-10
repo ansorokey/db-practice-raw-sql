@@ -177,3 +177,9 @@ AKA self-referencing or recursive relationship.
 Follows the same rules as any other relationship.
 In a diagram, the one table would have both a PK and a FK
 Its a good idea to add check contraints to ensure that the PK and FK are never equal on one record.
+
+## Cascade Changes
+Since data references other data in a relationship, changing a record in one place can cause issues if it isnt changed elsewhere.
+Cascading update is when the database makes a change in all related records when we change one piece of data.
+Cascade delete removed all records that refer to the data.
+When defining the foreign key and relationship, we can add ON DELETE CASCADE and ON UPDATE CASCADE
