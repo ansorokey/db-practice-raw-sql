@@ -183,3 +183,40 @@ Since data references other data in a relationship, changing a record in one pla
 Cascading update is when the database makes a change in all related records when we change one piece of data.
 Cascade delete removed all records that refer to the data.
 When defining the foreign key and relationship, we can add ON DELETE CASCADE and ON UPDATE CASCADE
+
+## Relational Database normal forms
+Data tables that follow a certain set of rules are called normal forms.
+Normalization is the series of rules that a table has to pass to be a proper database design. They must pass one after the other, so passing until the 3rd form (3NF) makes a good database.
+1NF - columns only hold one single piece of data. If a piece of data, like a street address, is comma separated, then it should be split into its own fields.
+
+2NF - All non-key values must not be dependant on the primary key fields.
+A table using a single primary key already passes this.
+A table using a compositie key runs into an issue where we do not want redundant non-key and primary key values.
+(Basically, one part of the composite key always shows up with another non-primary key in a table)
+It should instead be split off into its own referrential table.
+3NF - all non-key field is independant from other non-keys.
+(dont have fields that are always the same in the same record(redundant)).
+
+## Denormalization
+Normalization is only a guideline, not a requirement.
+It is okay for a table to break the 3NF rule in order to maintian efficient tables.
+This - denormalization - deliberately introduces redundancy to increase performance.
+The most common denormalization example is to extend the number of columns in a table instead of using a seperate table to later join.
+Here, we are increasing the amount of space required AND losing data protection in exchange for faster data retrieval (dont need to wait to join tables). This also means we now have to update EVERY corresponding field that might have been in a different table.
+
+## Data Definition Language
+The commands that create objects and modify properties
+Making tables, c=adding columns, setting constraints, etc.
+
+## Data Manipulation Language
+Commands to modify data stored in tables.
+Inserting, updating, and deleting.
+Makre sure to use where clause with specific, unique values to identify correct data.
+
+## Select Queries
+The results of a select query is the dataset, and is like its own table.
+
+## Create a database view
+A view is a saved query that we can re-use.
+Instead of writing a long, complex querty (like joining multiple tables) we can save a normal query as a view, and then query against that view like a table
+(a view doesnt save any data, it just runs the query we saved to it and gives that info back)
