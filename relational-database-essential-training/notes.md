@@ -220,3 +220,9 @@ The results of a select query is the dataset, and is like its own table.
 A view is a saved query that we can re-use.
 Instead of writing a long, complex querty (like joining multiple tables) we can save a normal query as a view, and then query against that view like a table
 (a view doesnt save any data, it just runs the query we saved to it and gives that info back)
+
+## Graph Databases
+Relational databases are only type of database, among others. Another type of database is  aGraph Database, where data is stored as nodes and edges. Each node can have relationships with any other node. Nodes can represent different kinds of information. Similar to a social network layout. These may be a better option when the type of relationship and tracking how data relates is more essential than the data itself. An example of a NoSQL database.
+
+## Document Database
+Another type of database. This one stores documents that represents a single object. XML data, JSON, PDFS, etc. Documents are group, categorized, and tagged. Information about each object is stored within the document. Organization depends on the content of the document. An example of a NoSQL database.
