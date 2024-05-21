@@ -11,3 +11,10 @@ SQLite version 3.31.1
 MySQL connector version 8.4.0
 
 I dunno how the heck to update sqlite3 to the latest versions. Just winging it with what we got for now.
+
+## Creating a connection
+
+## Prepared statements
+A statement parsed once by the db engine and then a used over and over
+We should always set the prepared=True argument within the .connect
+A ? is a bind variable within a query

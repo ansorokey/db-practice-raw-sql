@@ -6,7 +6,8 @@ import sqlite3
 
 
 def main():
-    db = sqlite3.connect("../db/scratch.db")
+    db = sqlite3.connect("../album.db")
+    # db = sqlite3.connect(":memory:")
     cur = db.cursor()
 
     cur.execute("DROP TABLE IF EXISTS temp")
@@ -18,9 +19,15 @@ def main():
 
     cur.execute("SELECT * FROM temp")
     row = cur.fetchone()
+    rows = cur.fetchall()
+
+    # we could fetch every row, but one row at a time saves more memoryh
     while row:
         print(row)
         row = cur.fetchone()
+
+    # for row in cur:
+    #     print(row)
 
     cur.execute("DROP TABLE IF EXISTS temp")
     cur.close()
