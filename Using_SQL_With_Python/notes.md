@@ -18,3 +18,4 @@ I dunno how the heck to update sqlite3 to the latest versions. Just winging it w
 A statement parsed once by the db engine and then a used over and over
 We should always set the prepared=True argument within the .connect
 A ? is a bind variable within a query
+These are used to sanitize inputs before making a query

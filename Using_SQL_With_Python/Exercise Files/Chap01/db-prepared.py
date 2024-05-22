@@ -3,16 +3,16 @@
 # as of 2021-04-10 bw
 
 import mysql.connector as mysql
+import sqlite3
 
-
-MY_HOST = 'pluto.local'
-MY_USER = 'appuser'
-MY_PASS = 'Spartacus'
+MY_HOST = 'localhost'
+MY_USER = ''
+MY_PASS = ''
 
 
 def main():
-    db = mysql.connect(host=MY_HOST, user=MY_USER, password=MY_PASS, database='scratch')
-    cur = db.cursor(prepared=True)
+    db = sqlite3.connect('./scratch.db')
+    cur = db.cursor()
 
     cur.execute("DROP TABLE IF EXISTS temp")
     cur.execute("CREATE TABLE IF NOT EXISTS temp ( a TEXT, b TEXT, c TEXT )")
